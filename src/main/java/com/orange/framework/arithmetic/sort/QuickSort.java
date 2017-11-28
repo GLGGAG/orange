@@ -46,6 +46,7 @@ public class QuickSort {
         }
         //当left == right，完成一趟快速排序，此时left位相当于空，等待pivot补上
         arr[f] = pivot;
+
         return f;
     }
 }

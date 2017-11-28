@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.mapper.CategoryMapper">
+
+    <resultMap type="com.orange.vos.CategoryVo" id="categoryVoResultMap">
+        <result column="categoryName" property="categoryName"/>
+        <result column="categoryNo" property="categoryNo"/>
+        <result column="categoryParentNo" property="categoryParentNo"/>
+        <collection property="subCategoryVo" column="categoryNo" select="com.orange.mapper.CategoryMapper.totalSubCategory"/>
+    </resultMap>
+
+
+    <select id="totalSubCategory" resultMap="categoryVoResultMap">
+        SELECT
+            c1.categoryName,
+            c1.categoryNo,
+            c1.categoryParentNo
+        FROM
+            blog_category c1
+        WHERE
+              c1.categoryParentNo=#{categoryNo}
+        AND
+              c1.deleted=false
+    </select>
+
+
+    <select id="findByCategoryNo" resultType="com.orange.entity.Category">
+        SELECT *
+        FROM
+            blog_category cl
+        WHERE
+            cl.categoryNo=111
+        AND
+            cl.deleted=FALSE
+    </select>
+
+    <update id="updateByCategryName">
+        UPDATE blog_category cl
+            SET cl.categoryName='xx',
+                 cl.updateTime=now()
+        WHERE cl.categoryNo=#{categoryNo}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO blog_category(categoryName, categoryNo,categoryParentNo,priority) VALUES (#{ca.categoryName},#{ca.categoryNo},#{ca.categoryParentNo},#{ca.priority})
+    </insert>
+
+</mapper>
+

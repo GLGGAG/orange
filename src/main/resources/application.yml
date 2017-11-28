@@ -1,0 +1,20 @@
+
+online: false
+
+#logging.config: classpath:log-dev.xml
+
+database:
+  url:  jdbc:mysql://127.0.0.1:3306/orange?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&transformedBitIsBoolean=true&zeroDateTimeBehavior=convertToNull&statementInterceptors=com.orange.interceptor.ShowSqlInterceptor
+  userName: root
+  password: root
+  filters: stat,wall
+
+spring:
+# 配置下面两个值将会走到 ControllerAdvice 全局里面去
+# org.springframework.boot.autoconfigure.web.WebMvcProperties
+  mvc.throw-exception-if-no-handler-found: false
+# org.springframework.boot.autoconfigure.web.ResourceProperties
+  resources.add-mappings: false
+logging:
+  config: classpath:log-dev.xml
+

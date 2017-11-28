@@ -1,0 +1,16 @@
+
+online: false
+
+logging.config: classpath:log-test.xml
+
+database:
+  url:  jdbc:mysql://127.0.0.1:3306/blogs?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&statementInterceptors=com.futurepay.utils.ShowSqlInterceptor
+  userName: root
+  password: root
+  filters: stat,wall
+
+
+
+spring:
+  mvc.throw-exception-if-no-handler-found: true
+  resources.add-mappings: false
